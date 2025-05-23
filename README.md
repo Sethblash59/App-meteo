@@ -24,8 +24,6 @@ Créer un site météo efficace et pratique, avec une autocomplétion performant
 
 - **Frontend** : HTML, CSS, JavaScript
 - **APIs** :
-  - OpenWeather
-  - Nominatim
-  - Leaflet
-  - (optionnellement) Google Maps/Places/Weather API
+  - Google Maps/Places/Weather API
+  - (Anciennement) Nominatim, OpenWeather, Leaflet
 - **Outils de conception** : Figma, Wireframe
