@@ -121,3 +121,9 @@ function initMap() {
     getWeatherByCoords(lat, lon);
   });
 }
+
+// ========= MODE JOUR NUIT ===========
+const themeSwitch = document.getElementById("theme_switch");
+themeSwitch.addEventListener("click", function () {
+  document.body.classList.toggle("dark-mode");
+});

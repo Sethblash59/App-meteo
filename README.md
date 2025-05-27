@@ -16,9 +16,9 @@ Créer un site météo efficace et pratique, avec une autocomplétion performant
 ## Parcours du projet
 
 - **Début** : Utilisation de l’API du gouvernement français pour l’autocomplétion des villes.
-- **Changement** : Pour élargir la portée à l’international, recherches sur plusieurs API d’autocomplétion mondiale. Passage par Nominatim (permet d’obtenir les coordonnées d’une ville pour les transmettre à OpenWeather et récupérer la météo).
+- **Changement 1** : Pour élargir la portée à l’international, recherches sur plusieurs API d’autocomplétion mondiale. Passage par Nominatim (permet d’obtenir les coordonnées d’une ville pour les transmettre à OpenWeather et récupérer la météo).
 - **Ajout de fonctionnalités** : Intégration d’une carte interactive avec Leaflet.
-- **Optimisation** : Découverte que Google propose ses propres API (météo, autocomplétion, cartographie). Choix de se tourner vers cette solution pour obtenir un code plus propre, plus rapide et moins coûteux en ressources.
+- **Changement 2** : Découverte que Google propose ses propres API (météo, autocomplétion, cartographie). Choix de se tourner vers cette solution pour obtenir un code plus propre, plus rapide et moins coûteux en ressources.
 
 ## Technologies utilisées
 

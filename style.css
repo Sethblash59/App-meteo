@@ -1,103 +1,71 @@
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1em 2em;
-  background: #1976d2;
-  color: #fff;
+:root {
+  /* Palette claire (default) */
+  --bleu-fonce:     #0d47a1;
+  --bleu-glacier:   #64b5f6;
+  --blanc-casse:    #f0faff;
+  --gris-bleute:    #dbeafe;
+  --bleu-pastel:    #b3e0ff;
+  --gris-fonce:     #21304e;
 }
-#title {
-  display: flex;
-  align-items: center;
-  gap: 0.8em;
-  font-size: 2em;
+
+body.dark-mode {
+  /* Palette sombre */
+  --bleu-fonce:     #101c3a;
+  --bleu-glacier:   #325a85;
+  --blanc-casse:    #232c3a;
+  --gris-bleute:    #162033;
+  --bleu-pastel:    #234366;
+  --gris-fonce:     #f0faff;
+}
+
+
+body{
+  background-color: var(--blanc-casse);
   margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: poppins, sans-serif;
+  color: var(--gris-fonce);
 }
-.wind_logo {
-  margin-left: 0.6em;
-  height: 2.5em;
-  vertical-align: middle;
+
+header{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: var(--bleu-fonce);
+  height: 4rem;
+  width: 100%;
+
+}
+
+.title_logo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.01rem;
+}
+.logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: 1rem;
 }
 .research_div {
   display: flex;
-  align-items: center;
-  position: relative;
-}
-
-main {
-  max-width: 1100px;
-  margin: 2.5em auto;
-  padding: 0 1em;
-}
-
-/* Les infos principales (ville, temp, condition) centrées au-dessus de la carte */
-.meteo-principale {
-  display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: baseline;
-  gap: 2em;
-  margin-bottom: 1.5em;
+  align-items: center;
+}
+.search_bar {
+  width: 20rem;
+  height: 2.5rem;
+  border-radius: 5rem;
+  border: none;
+  padding-left: 1rem;
+  font-size: 1rem;
+  color: var(--blanc-casse-dark);
 }
 
-.main-content {
-  display: flex;
-  align-items: flex-start;
-  gap: 2em;
-}
-
-/* Carte à gauche */
-.map-zone {
-  flex: 2;
-}
-#map {
-  width: 100%;
-  min-height: 340px;
-  height: 400px;
-  max-width: 700px;
-  border-radius: 12px;
-  background: #eee;
-  box-shadow: 0 1px 6px #0001;
-}
-
-/* Infos complémentaires à droite, en colonne */
-aside.info {
-  flex: 1;
-  background: #f7f7f7;
-  border-radius: 10px;
-  padding: 2em 1.5em;
-  box-shadow: 0 4px 18px #0002;
-  min-width: 220px;
-  max-width: 340px;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-aside.info h3 {
-  margin: 0.6em 0;
-}
-
-/* Responsive mobile */
-@media (max-width: 900px) {
-  .main-content {
-    flex-direction: column;
-    gap: 1em;
-  }
-  .map-zone, aside.info {
-    max-width: 100%;
-    min-width: unset;
-  }
-  #map {
-    height: 220px;
-    min-height: 150px;
-  }
-  .meteo-principale {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2em;
-  }
-  aside.info {
-    margin-top: 0;
-    padding: 1em;
-  }
+.search_bar:focus {
+  outline: none;
 }
