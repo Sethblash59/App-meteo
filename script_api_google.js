@@ -1,7 +1,6 @@
-// ======== À TOI DE JOUER : Mets ta clé OpenWeather ici =============
-const API_KEY = "e3fc671b898c28cb04fb1f0a09300a76"; // Remplace par TA clé OpenWeather
+const API_KEY = "04f722fecc6b2e7b70f7e7a611aeaaa4"; // Remplace par TA clé OpenWeather
 
-// ==== TA FONCTION MÉTÉO (on ne change rien ici) ====
+// ==== MÉTÉO ====
 async function getWeatherByCoords(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=fr`;
   try {
@@ -26,33 +25,76 @@ async function getWeatherByCoords(lat, lon) {
   }
 }
 
-// ===== INITIALISATION DE GOOGLE PLACES AUTOCOMPLETE =====
+// ===== GOOGLE MAPS & AUTOCOMPLETE + GEOLOC =====
+let map = null;
+let marker = null;
+let autocomplete = null;
 
-// (À faire quand la page est prête, par exemple dans un <script> à la fin du body)
-window.onload = function() {
-  // Remplace ici par l'id de ton input de recherche !
+function setMarker(lat, lon, label = "") {
+  if (marker) marker.setMap(null);
+  marker = new google.maps.Marker({
+    position: {lat, lng: lon},
+    map: map,
+    title: label || "Sélection"
+  });
+}
+
+function initMap() {
+  // Map par défaut sur Paris (sera déplacée par la géoloc ensuite)
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 48.8584, lng: 2.2945},
+    zoom: 8,
+    streetViewControl: false,
+    mapTypeControl: false,
+    fullscreenControl: false,
+    zoomControl: true,
+    gestureHandling: "greedy",
+  });
+
+  // ========= GÉOLOCALISATION À L'OUVERTURE =========
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        map.setCenter({lat, lng: lon});
+        map.setZoom(8);
+        setMarker(lat, lon, "Ma position");
+        getWeatherByCoords(lat, lon);
+      },
+      function() {
+        // Refusé ou impossible → fallback Paris
+        setMarker(48.8584, 2.2945, "Paris");
+        getWeatherByCoords(48.8584, 2.2945);
+      }
+    );
+  } else {
+    // Pas de géoloc
+    setMarker(48.8584, 2.2945, "Paris");
+    getWeatherByCoords(48.8584, 2.2945);
+  }
+
+  // ========= AUTOCOMPLETE GOOGLE PLACES =========
   const input = document.getElementById('research_bar');
   const searchButton = document.getElementById('research_button');
 
-  // Google Places Autocomplete sur ton input
-  let autocomplete = new google.maps.places.Autocomplete(input, {
-    types: ['(cities)'] // On peut aussi mettre ['geocode'] pour tous types de lieux
-    // Pas de restriction pays = recherche mondiale
+  autocomplete = new google.maps.places.Autocomplete(input, {
+    types: ['(cities)']
   });
 
-  // Quand tu valides une ville dans l'autocomplete (clic ou touche entrée)
   autocomplete.addListener('place_changed', function() {
     const place = autocomplete.getPlace();
-    if (!place.geometry) return; // Si aucun résultat choisi, on fait rien
-
+    if (!place.geometry) return;
     const lat = place.geometry.location.lat();
     const lon = place.geometry.location.lng();
 
-    // Appelle la météo directement
+    map.setCenter({lat, lng: lon});
+    map.setZoom(13);
+    setMarker(lat, lon, place.name || input.value);
     getWeatherByCoords(lat, lon);
   });
 
-  // (optionnel) Ajout du bouton de recherche pour lancer la météo manuellement
+  // ========= RECHERCHE PAR BOUTON =========
   if (searchButton) {
     searchButton.addEventListener('click', function() {
       const place = autocomplete.getPlace();
@@ -62,7 +104,20 @@ window.onload = function() {
       }
       const lat = place.geometry.location.lat();
       const lon = place.geometry.location.lng();
+      map.setCenter({lat, lng: lon});
+      map.setZoom(13);
+      setMarker(lat, lon, place.name || input.value);
       getWeatherByCoords(lat, lon);
     });
   }
+
+  // ========= CLIQUE SUR LA CARTE =========
+  map.addListener('click', function(event) {
+    const lat = event.latLng.lat();
+    const lon = event.latLng.lng();
+    setMarker(lat, lon, "");
+    map.setCenter({lat, lng: lon});
+    map.setZoom(13);
+    getWeatherByCoords(lat, lon);
+  });
 }
