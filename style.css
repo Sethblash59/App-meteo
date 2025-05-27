@@ -6,6 +6,7 @@
   --gris-bleute:    #dbeafe;
   --bleu-pastel:    #b3e0ff;
   --gris-fonce:     #21304e;
+  --font-color:    rgb(41, 41, 41);
 }
 
 body.dark-mode {
@@ -16,6 +17,7 @@ body.dark-mode {
   --gris-bleute:    #162033;
   --bleu-pastel:    #234366;
   --gris-fonce:     #f0faff;
+  --font-color:    rgb(216, 216, 216);
 }
 
 
@@ -27,14 +29,15 @@ body{
   width: 100%;
   height: 100%;
   font-family: poppins, sans-serif;
-  color: var(--gris-fonce);
+  color: var(--font-color);
 }
 
 header{
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background-color: var(--bleu-fonce);
+  background-color: var(--bleu-pastel);
+  border-bottom: var(--bleu-glacier) 0.2rem solid;
   height: 4rem;
   width: 100%;
 
@@ -63,9 +66,20 @@ header{
   border: none;
   padding-left: 1rem;
   font-size: 1rem;
-  color: var(--blanc-casse-dark);
+  color: rgb(41, 41, 41)
 }
 
 .search_bar:focus {
   outline: none;
+}
+
+.theme_switch {
+  margin-top: 0.7rem;
+  width: 5.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  height: 2.5rem;
+  border-radius: 5rem;
+  border: none;
 }
