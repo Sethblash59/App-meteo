@@ -4,21 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <title>Caelum</title>
   </head>
   <body>
     <header>
       <h1 id="title" class="title">Caelum</h1>
-      <img src="assets/wind.svg"  class="wind_logo" alt="wind" style="height: 3rem; color: azure;" >
+      <img
+        src="assets/wind.svg"
+        class="wind_logo"
+        alt="wind"
+        style="height: 3rem"
+      />
       <div id="research_div" class="research_div">
         <input
-        id="research_bar"
-        class="search_bar"
-        type="search_bar"
-        name="research_bar"
-        placeholder="Rechercher..."
+          id="research_bar"
+          class="search_bar"
+          type="search"
+          name="research_bar"
+          placeholder="Rechercher..."
+          autocomplete="off"
         />
         <div id="suggestions"></div>
         <button id="research_button" class="research_button">Recherche</button>
@@ -26,29 +30,28 @@
       <button id="theme_switch" class="theme_switch">mode nuit/jour</button>
     </header>
     <main>
-      <!-- CARTE -->
-      <h2 id="city" class="city"></h2>
-      <h3 id="temp" class="temp"></h3>
-      <h3 id="condition" class="condition"></h3>        
-      <div id="map" class="map" style="height: 500px;"></div>
-      <button id="ping_button" class="ping_button">PING</button>
-      <h3 id="time" class="time"></h3>
-      <h3 id="coords" class="coords"></h3>
-    </section>
-    <!-- INFORMATIONS SECONDAIRE -->
-    <aside id="info" class="info">
-      <h2 id="infos" class="infos">Informations</h2>
-      <div>
-        <h3 id="humidity" class="humidity"></h3>
-        <h3 id="wind" class="wind"></h3>
-        <h3 id="pressure" class="pressure"></h3>
+      <div class="meteo-principale">
+        <h2 id="city" class="city"></h2>
+        <h3 id="temp" class="temp"></h3>
+        <h3 id="condition" class="condition"></h3>
       </div>
-      <div id="time_prevision" class="time_prevision"></div>
-      <div id="day_prevision" class="day_prevision"></div>
-      <div id="alerts" class="alerts"></div>
-      <div id="pinged" class="pinged"></div>
-    </aside>
-  </main>
-  <script src="script.js"></script>
-</body>
+      <div class="main-content">
+        <div class="map-zone">
+          <div id="map"></div>
+        </div>
+        <aside class="info">
+          <h3 id="humidity" class="humidity"></h3>
+          <h3 id="wind" class="wind"></h3>
+          <h3 id="pressure" class="pressure"></h3>
+          <!-- ...autres infos si besoin... -->
+        </aside>
+      </div>
+    </main>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMycUnS5BD_8UNZkoez7ujIZCbHo7dNSQ&libraries=places&callback=initMap"
+      async
+      defer
+    ></script>
+    <script src="script_api_google.js"></script>
+  </body>
 </html>
