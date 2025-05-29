@@ -10,12 +10,6 @@
     <header>
       <div class="title_logo">
         <h1 id="title" class="title">Caelum</h1>
-        <img
-          src="assets/wind.svg"
-          class="wind_logo"
-          alt="wind"
-          style="height: 3rem"
-        />
       </div>
       <div id="research_div" class="research_div">
         <input
@@ -27,9 +21,16 @@
           autocomplete="off"
         />
         <div id="suggestions"></div>
-        <button id="research_button" class="research_button">Recherche</button>
+        <button id="research_button" class="research_button" aria-label="Rechercher">
+
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+</button>
+
       </div>
-      <button id="theme_switch" class="theme_switch">mode nuit/jour</button>
     </header>
     <main>
       <div class="meteo-principale">
