@@ -1,4 +1,4 @@
-const API_KEY = "04f722fecc6b2e7b70f7e7a611aeaaa4"; // Remplace par TA clé OpenWeather
+const API_KEY = ""; //clé OpenWeather
 
 // ==== MÉTÉO ====
 async function getWeatherByCoords(lat, lon) {
