@@ -1,3 +1,0 @@
-// config.js
-const API_KEY_WEATHER = "TA_CLE_API_OPENWEATHER";
-const API_KEY_GOOGLE = "TA_CLE_API_GOOGLE";
